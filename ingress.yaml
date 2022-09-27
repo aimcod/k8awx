@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: loki-ingress
+  annotations: 
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - hosts:
+      - ansible.aimcorp.co.uk 
+    secretName: loki-tls
+  rules:
+  - host: ansible.aimcorp.co.uk 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: loki-service
+            port:
+              number: 80

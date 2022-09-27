@@ -1,0 +1,15 @@
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: loki
+  namespace: awx
+spec:
+  service_type: NodePort
+  nodeport_port: 30080
+  ingress_type: ingress 
+  hostname: ansible.aimcorp.co.uk
+  ingress_tls_secret: loki-tls
+  task_privileged: false 
+  auto_upgrade: true
+  postgres_configuration_secret: loki-postgres-configuration 
+  no_log: "false"

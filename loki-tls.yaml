@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  tls.crt: yourtls.crtfilecontents go here, encoded in base64 
+  tls.key: yourtls.keyfilecontents fo here, encoded in base64
+kind: Secret
+metadata:
+  name: loki-tls
+type: kubernetes.io/tls

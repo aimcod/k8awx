@@ -13,3 +13,28 @@ spec:
   auto_upgrade: true
   postgres_configuration_secret: loki-postgres-configuration 
   no_log: "false"
+
+ #######
+ # this section is for kerberos authentication.
+ # I have included a krb5.yaml file with a complete configuration. 
+ # You will need to update the domain_realm section and the default_realm with your own organization's
+ #  set_self_labels: false
+ # no_log: 'false'
+ # extra_volumes: |
+ #         - name: krb5
+ #           configMap:
+ #             defaultMode: 420
+ #             items:
+ #               - key: krb5.conf
+ #                 path: krb5.conf
+ #             name: krb5
+ #
+ # task_extra_volume_mounts: |
+ #         - name: krb5
+ #           mountPath: /etc/krb5.conf
+ #           subPath: krb5.conf
+ # ee_extra_volume_mounts: |
+ #         - name: krb5
+ #           mountPath: /etc/krb5.conf
+ #           subPath: krb5.conf
+

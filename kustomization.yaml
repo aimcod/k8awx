@@ -4,6 +4,8 @@ resources:
   # Find the latest tag here: https://github.com/ansible/awx-operator/releases
   - github.com/ansible/awx-operator/config/default?ref=0.29.0
   - loki-postgres-secret.yaml
+    #uncomment below if you have updated and want to use the kerberos extra volume/mounts
+    #  - krb5.yaml
   - loki-tls.yaml
   - loki.yaml
 

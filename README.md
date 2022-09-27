@@ -38,11 +38,15 @@ You may need to specify an address.
 
 NOTE:
 If the site is inaccessible after the script completes, check the last instruction from the script. 
-```kubectl apply -f ingress.yaml -n awx
+```
+kubectl apply -f ingress.yaml -n awx
+```
+```
 #you should check the site now. If the output of the below changes, make sure you can still access the site.if you can't re-run the command above.
 ```
 This is an issue with the awx-operator, where it removes the ingress-class annotation/spec.
 Note that in some cases, you might need to define the default ingress class, using the ingress-class.yaml
 
 NOTE#2: I have created this repo because I too found awx deployment difficult and I ran into all sorts of issues during my journey. Some things might not quite work off the first try, but I do encourage you to persist.
+
 This is the way.

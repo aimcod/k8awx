@@ -37,9 +37,10 @@ sudo apt-mark hold kubelet kubeadm kubectl containerd
 sudo systemctl enable --now containerd kubelet
 sudo kubeadm init --ignore-preflight-errors=all
 
+
 mkdir -p $HOME/.kube
-sudo cp -f /etc/kubernetes/admin.conf /home/andrei/.kube/config 
-sudo chown andrei:andrei /home/andrei/.kube/config
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 kubectl get nodes

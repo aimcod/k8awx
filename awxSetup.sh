@@ -7,7 +7,7 @@ cd $HOME/k8awx/
 
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash 
 
-export=$PATH:$HOME/k8awx/
+export PATH=$PATH:$HOME/k8awx/
 
 git clone https://github.com/ansible/awx-operator.git
 

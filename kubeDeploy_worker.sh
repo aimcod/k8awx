@@ -10,6 +10,7 @@ net.ipv4.ip_forward = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 sudo sysctl --system
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum update
 sudo yum install containerd
 mkdir  -p /etc/containerd

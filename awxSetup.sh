@@ -29,7 +29,7 @@ sed -i "s/[0-9].\([0-9]\)\{1,\}.\([0-9]\)\{1,\}/$ver/g" kustomization.yaml
 kustomize build . | kubectl apply -f -
 
 #once the kustomization is complete, we create the ingress-controller service. Note that deploy.yaml myst have hostNetwork: true, nodePort: 31145(or whatever port your HAProxy offloads ssl from)
-wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.1/deploy/static/provider/baremetal/deploy.yaml
+wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/baremetal/deploy.yaml
 
 #we update the ingress-controller service manifest.
 sed -i '/termination/a\ \ \ \ \ \ hostNetwork: true' deploy.yaml | grep hostNetwork -C1

@@ -11,7 +11,7 @@ sudo dnf install https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86
 #disable old pg
 sudo dnf -qy module disable postgresql
 #install new pg
-sudo dnf install postgresql14 postgresql14-server postgresql14-contrib -y
+sudo dnf install postgresql15 postgresql15-server postgresql15-contrib -y
 #init new pg
 sudo /usr/pgsql-14/bin/postgresql-14-setup initdb
 #enable the service.

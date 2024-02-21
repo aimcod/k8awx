@@ -24,7 +24,10 @@ fi
 
 cd $HOME/k8awx/awx-operator
 
+
 ver=$(git describe --tags --abbrev=0)
+echo new version is: $ver
+sleep 2
 cd $HOME/k8awx/
 sed -i "s/[0-9].\([0-9]\)\{1,\}.\([0-9]\)\{1,\}/$ver/g" kustomization.yaml
 kustomize build . | kubectl apply -f -
@@ -50,8 +53,8 @@ do
        echo waiting for deployment to finish
 done
 
-kubectl apply -f ingress.yaml -n awx
+#kubectl apply -f ingress.yaml -n awx
 #you should check the site now. If the output of the below changes, make sure you can still access the site.if you can't re-run the command above.
 #kubectl get ingress -n awx -w
-sleep 60
-kubectl patch ingress chnla-ingress -n awx --patch '{"metadata": {"annotations": {"kubernetes.io/ingress.class": "nginx"}}}'
+#sleep 30
+#kubectl patch ingress chnla-ingress -n awx --patch '{"metadata": {"annotations": {"kubernetes.io/ingress.class": "nginx"}}}'

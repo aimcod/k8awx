@@ -19,29 +19,23 @@ then
         rm -rf /$HOME/k8awx/awx-operator
         git clone https://github.com/ansible/awx-operator.git
 else
-         git clone https://github.com/ansible/awx-operator.git
+git clone https://github.com/ansible/awx-operator.git
 fi
 
 cd $HOME/k8awx/awx-operator
 
-
 ver=$(git describe --tags --abbrev=0)
-echo new version is: $ver
-sleep 2
 cd $HOME/k8awx/
 sed -i "s/[0-9].\([0-9]\)\{1,\}.\([0-9]\)\{1,\}/$ver/g" kustomization.yaml
+
 kustomize build . | kubectl apply -f -
 
-if [ ! -f deploy.yaml ]
-then
-
 #once the kustomization is complete, we create the ingress-controller service. Note that deploy.yaml myst have hostNetwork: true, nodePort: 31145(or whatever port your HAProxy offloads ssl from)
-wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/baremetal/deploy.yaml
+wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.1/deploy/static/provider/baremetal/deploy.yaml
 
 #we update the ingress-controller service manifest.
 sed -i '/termination/a\ \ \ \ \ \ hostNetwork: true' deploy.yaml | grep hostNetwork -C1
 sed -i '/targetPort: https/i\ \ \ \ nodePort: 31145' deploy.yaml | grep "nodePort: 31145" -C1
-fi
 
 kubectl apply -f deploy.yaml
 
@@ -53,8 +47,6 @@ do
        echo waiting for deployment to finish
 done
 
-#kubectl apply -f ingress.yaml -n awx
+kubectl apply -f ingress.yaml -n awx
 #you should check the site now. If the output of the below changes, make sure you can still access the site.if you can't re-run the command above.
-#kubectl get ingress -n awx -w
-#sleep 30
-#kubectl patch ingress chnla-ingress -n awx --patch '{"metadata": {"annotations": {"kubernetes.io/ingress.class": "nginx"}}}'
+kubectl get ingress -n awx -w
